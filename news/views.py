@@ -1,8 +1,13 @@
+from django.contrib.auth.models import User
 from rest_framework import viewsets
 
-
-from .serializers import AuthorSerializer, CategorySerializer, PostSerializer
+from .serializers import AuthorSerializer, CategorySerializer, UsersSerializer, PostSerializer
 from .models import Author, Category, Post
+
+
+class UsersViewset(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UsersSerializer
 
 
 class AuthorViewset(viewsets.ModelViewSet):
@@ -15,6 +20,11 @@ class CategoryViewset(viewsets.ModelViewSet):
     serializer_class = CategorySerializer
 
 
-class PostViewset(viewsets.ModelViewSet):
-    queryset = Post.objects.all()
+class NewsViewset(viewsets.ModelViewSet):
+    queryset = Post.objects.filter(type='news')
+    serializer_class = PostSerializer
+
+
+class ArticlesViewset(viewsets.ModelViewSet):
+    queryset = Post.objects.filter(type='arti')
     serializer_class = PostSerializer
