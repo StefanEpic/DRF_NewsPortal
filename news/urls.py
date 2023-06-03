@@ -6,8 +6,8 @@ router = routers.DefaultRouter()
 router.register(r'users', UsersViewset)
 router.register(r'author', AuthorViewset)
 router.register(r'category', CategoryViewset)
-router.register(r'news', NewsViewset)
-router.register(r'articles', ArticlesViewset)
+router.register(r'news', NewsViewset, basename='news')
+router.register(r'articles', ArticlesViewset, basename='articles')
 
 urlpatterns = [
     path('', include(router.urls)),
